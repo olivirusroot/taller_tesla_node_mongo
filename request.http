@@ -2,3 +2,6 @@ POST http://localhost:3000/api/Messi
 ###
 
 GET  http://localhost:3000/api/prueba
+
+###
+GET  http://localhost:3000/user
