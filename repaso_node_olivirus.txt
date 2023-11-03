@@ -1,0 +1,77 @@
+Poyecto de 0 en node (Back_end)
+
+1.	Npm init
+
+2.	Crear el index.js
+
+3.	npm install express dotenv mongoose nodemon
+
+4.	crear el archivo: .gitignore (dentro : node_modules .env)
+
+5.	se modifica el package.json: se agrega el Type:”module”, en “scripts” “dev”:nodemon index.js
+
+6.	correr los scripts: npm run dev
+
+7.	se crea la db en atlas (URI, Ips de acceso, user and pass)
+
+8.	se crea una carperta config, y alli db.js: import mongoose from "mongoose"; adicional el proceso de conexión:
+
+const connectMongo = async ()=>{
+    await mongoose.connect(process.env.URI_MONGO)
+    try {
+        
+        console.log("conectado ok")
+    } catch (error) {
+        console.log("error")
+        
+    }
+}
+
+
+
+9.	Se crea el schema de la db (models): 
+
+import mongoose from "mongoose";
+
+//creamos la estructura de la base de datos
+const Schema= mongoose.Schema;
+const userModel = new Schema({
+    name:{
+        type:String,
+        required: true
+    },
+    last_name:{
+        type:String,
+    },
+    email:{
+        type:String,
+        unique:true,
+    },
+    age:{
+        type:Number
+    }
+})
+
+export default mongoose.model("user", userModel)
+
+
+10.	creamos el .gitignore y adicionamos: node_modules y .env
+
+11.	creamos el .env (import dotenv from "dotenv", dotenv.config()) dentro del .env ponemos las pass o uri ejemplo de la db, para llamarlos: process.env.URI_MONGO
+
+
+12.	creamos el index.js allí importante: importar express.: 
+•	dotenv.config()
+•	crear la app: const app = express ()
+•	definir uso de json: app.use(express.json())
+•	escucho el servidor_: app.listen(3000,()=>{
+    console.log("Server is running on port 3000")
+}
+)
+•	crear el path ejemplo: app.use('/user', userRouter)
+•	creo las rutas: const router= express.Router();
+•	habilito los métodos: router.get ('/prueba',(req,res)=>
+   {
+        res.json({"msg":"Estoy Funcionando"})
+    }    )
+Tambien puedo crear una carpeta routes o controllers y allí agregar las funciones.
