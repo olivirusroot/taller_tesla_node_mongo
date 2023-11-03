@@ -3,6 +3,10 @@ import express from "express";
 import connectMongo from "./config/db.js" ;
 import userRouter from "./routes/user.routes.js";
 import usersModel from "./models/users.model.js";
+import dotenv from "dotenv";
+
+//para que se use el .env
+dotenv.config()
 
 //1. creo la app
 const app = express ()

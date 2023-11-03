@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 //nos conectamos a la base de datos mirar atlas creamos repasonode
 const connectMongo = async ()=>{
-    await mongoose.connect("mongodb+srv://oliveros105:W1C6ngMTaQfhSK3t@cluster0.yadeljh.mongodb.net/repasonode?retryWrites=true&w=majority")
+    await mongoose.connect(process.env.URI_MONGO)
     try {
         
         console.log("conectado ok")
