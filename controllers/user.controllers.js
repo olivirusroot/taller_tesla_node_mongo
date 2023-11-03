@@ -1,4 +1,4 @@
-import usersModel from "../../models/users.model.js"
+import usersModel from "../models/users.model.js"
 
 export const userGet = async (req, res)=>{
     let users = await usersModel.find()
