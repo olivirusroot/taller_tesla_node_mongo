@@ -1,5 +1,5 @@
 import  express  from "express";
-import {playerLoad,playerSort,playerGoal,searchGoals,matchGoals,deleteById,searchByLetter,updatePlayer} from "../controllers/user.controllers.js";
+import {matchGoals,playerLoad,playerSort,playerGoal,searchGoals,deleteById,searchByLetter,updatePlayer} from "../controllers/user.controllers.js";
 
 const PlayerRouter = express.Router()
 
@@ -8,7 +8,7 @@ PlayerRouter.post("/", playerLoad)
 PlayerRouter.get("/",playerSort )
 PlayerRouter.get("/goal",playerGoal )
 PlayerRouter.get("/:goals",searchGoals )
-PlayerRouter.get("/match",matchGoals )
+PlayerRouter.get("/match/:mini/:maxi",matchGoals )
 PlayerRouter.delete("/delete/:id",deleteById )
 PlayerRouter.get("/search/:letter",searchByLetter )
 PlayerRouter.put("/update/:id",updatePlayer )

@@ -38,7 +38,7 @@ export const playerGoal = async (req, res) => {
 //punto 5 mayor que numero ingresado
 export const searchGoals = async (req, res) => {
   try {
-    let userData = req.body;
+    //
     let goalsForSearch = req.params.goals;
     let newUser = await footballModel.find({ goals: { $gt: goalsForSearch } });
     res.send(newUser);
@@ -49,17 +49,27 @@ export const searchGoals = async (req, res) => {
 
 //punto 6 Crear un endpoint para listar futbolistas con entre 500 y 800 partidos ordenados por goles
 export const matchGoals = async (req, res) => {
-  try {
-    const minMatch = 500;
-    const maxMatch = 800;
-    let newUser = await footballModel
-      .find({ matches: { $gte: minMatch, $lte: maxMatch } })
-      .sort({ goals: -1 });
-    res.send(newUser);
-  } catch (e) {
-    return res.json({ error: e });
-  }
-};
+    try {
+      //const minMatch = 500;
+      //const maxMatch = 800;
+      let mini =  Number(req.params.mini);
+      console.log(mini)
+      console.log(typeof(mini))
+      
+      
+      let maxi = Number(req.params.maxi);
+      console.log(maxi)
+      let newUser = await footballModel
+        .find({ "matches": { $gt: mini, $lte:maxi } })
+        .sort({ goals: -1 });
+      res.send(newUser);
+    } catch (e) {
+      return res.json({ error: e });
+    }
+  };
+  
+
+
 
 //punto 7 Crear un endpoint para eliminar futbolistas,Crea un endpoint que permita eliminar futbolistas de la base de datos utilizando el ID del jugador.
 export const deleteById = async (req, res) => {
